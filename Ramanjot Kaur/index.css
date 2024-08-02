@@ -29,3 +29,25 @@ nav{
     padding-left: 400px;
     gap: 20px;
 }
+
+
+.sale{
+    margin: 40px 0px;
+    background-color: rgb(38, 158, 118);
+    text-align: center;
+    align-content: center;
+    width: 100%;
+    height: 200px;
+}
+.sale>p{
+    font-size: 20px;
+}
+.sale>h1{
+    font-size: 60px;
+}
+.sale>button{
+    background-color: black;
+    width: 150px;
+    height: 30px;
+    color: white;
+}
