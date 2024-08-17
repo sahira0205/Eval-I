@@ -13,13 +13,11 @@
     align-items: center;
     align-content: center;
     margin-left: 20px;
+    overflow: hidden;
 }
 .card {
     gap: 10px;
-    /* background-color: white; */
-    /* border-radius: 50%; */
     overflow: hidden;
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
     width: 200px;
     margin: 10px;
     text-align: center;
