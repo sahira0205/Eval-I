@@ -1,0 +1,322 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: garamond,Arial, Helvetica, sans-serif;
+}
+
+/* Navbar */
+nav{
+    border-bottom: 1px solid #e1e0e0;
+    height: 56px;
+    padding: 0 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    background-color: white;
+    top: 0;
+    z-index:1000;
+}
+.navigation>a{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    font-weight:550;
+    margin-right: 20px;
+}
+.logo>p{
+    color: black;
+    font-size: 30px;
+    font-weight:600;
+    padding-left: 210px;
+    padding-top: 10px;
+}
+.icons{
+    display: flex;
+    padding-left: 400px;
+    gap: 20px;
+    float: right;
+}
+/* Shop the Look */
+.shopcontainers{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    justify-content: center;
+    margin-top: 40px;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    margin-left: 5px;
+    margin-right: 5px;
+    overflow:hidden;
+}
+.shopcard {
+    overflow: hidden;
+    width: 200px;
+    margin: 0px;
+    text-align: center;
+}
+
+.prd-image {
+    width: 100%;
+    border-radius: 50%;
+    height: 200px;
+}
+
+.info {
+    padding: 20px;
+}
+
+.name {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+/* Main cards */
+.main_card{
+    width: 300px;
+    margin-top: 30px;
+   
+  }
+  .main_img>img{
+  width: 100%;
+  object-fit: cover;
+  }
+  .main_container{
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .content{
+    margin-top: 10px;
+    
+  }
+  .TSS{
+    color: #58595B;
+  }
+  p{
+    color: #888888;
+  }
+/* Homegrown Indian brand banner */
+  .footerr {
+    left: 0;
+    bottom: 0; 
+    width: 100%;
+    height: 80px;
+    background-color: red;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    text-decoration: none;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+  .footerr>p{
+    color: white;
+  }
+/* Footer */
+.footer {
+    width: 100%;
+    background-color:black;
+    color: white;
+    text-align: center;
+    height: auto;
+    margin-bottom: 0px;
+  }
+  .footer>p{
+    margin-bottom: 0px;
+  }
+
+.containerss {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    background-color: #f2f2f2;
+    margin-top: 30px;
+    height: auto;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-item>a {
+    text-decoration: none;
+    color: black;
+}
+
+#footericon{
+    display:flex;
+    flex-direction: row;
+    gap: 10px;
+}
+#footericon>a{
+    text-decoration: none;
+    color: black;
+}
+
+/* Media Queries */
+
+/* For desktop screens (min-width: 1200px) */
+@media only screen and (min-width: 1200px) {
+ 
+}
+
+/* For laptop screens (min-width: 992px) and (max-width: 1199px) */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .shopcontainers {
+    grid-template-columns: repeat(4, 1fr);
+  }
+ 
+}
+
+/* For tablet screens (min-width: 768px) and (max-width: 991px) */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .shopcontainers {
+    grid-template-columns: repeat(3, 1fr);
+  }
+ 
+  .containerss {
+    flex-direction: column;
+    align-items: center;
+  }
+  .nav-item {
+    flex-direction: column;
+    align-items: center;
+  }
+  #footericon {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* For mobile screens (max-width: 767px) */
+@media only screen and (max-width: 767px) {
+  .shopcontainers {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .containerss {
+    flex-direction: column;
+    align-items: center;
+  }
+  .nav-item {
+    flex-direction: column;
+    align-items: center;
+  }
+  #footericon {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* For small mobile screens (max-width: 480px) */
+@media only screen and (max-width: 480px) {
+  .shopcontainers {
+    grid-template-columns: repeat(1, 1fr);
+  }
+ 
+  .containerss {
+    flex-direction: column;
+    align-items: center;
+  }
+  .nav-item {
+    flex-direction: column;
+    align-items: center;
+  }
+  #footericon {
+    flex-direction: column;
+    align-items: center;
+  }
+  .logo > p {
+    padding-left: 0px;
+  }
+}
+@media (max-width: 768px) {
+
+  .containerss {
+    flex-direction: column;
+    align-items: center;
+  }
+  .nav-item {
+    flex-direction: column;
+    align-items: center;
+  }
+  #footericon {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+@media (max-width: 768px) {
+  .containerss {
+    flex-direction: column;
+    align-items: center;
+  }
+  .nav-item {
+    flex-direction: column;
+    align-items: center;
+  }
+  #footericon {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+@media (max-width: 768px) {
+  .nav-bar {
+    flex-direction: column;
+  }
+  .nav-bar ul {
+    flex-direction: column;
+  }
+  .nav-bar li {
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .footer {
+    height: auto;
+  }
+  .containerss {
+    flex-direction: column;
+    align-items: center;
+  }
+  .nav-item {
+    flex-direction: column;
+    align-items: center;
+  }
+  #footericon {
+    flex-direction: column;
+    align-items: center;
+  }
+  .logo > p {
+    padding-left: 0px;
+  }
+
+  nav {
+    justify-content: center;
+  }
+
+  .logo {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .navigation, .icons {
+    display: none;
+  }
+}
