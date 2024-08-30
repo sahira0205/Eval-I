@@ -10,9 +10,8 @@ nav{
     height: 56px;
     padding: 0 68px;
     display: flex;
-    text-align: center;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     position: sticky;
     background-color: white;
     top: 0;
