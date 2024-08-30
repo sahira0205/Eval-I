@@ -183,6 +183,20 @@ a {
  
 }
 
+@media only screen and (max-width:1100px) and (min-width:500px){
+  .navigation, .icons {
+    display: none;
+  }
+  nav {
+    justify-content: center;
+  }
+
+  .logo {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+}
 /* For tablet screens (min-width: 768px) and (max-width: 991px) */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .shopcontainers {
