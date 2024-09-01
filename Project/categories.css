@@ -334,3 +334,20 @@ a {
     display: none;
   }
 }
+
+/* Responsive styling for screens less than 500px */
+@media (max-width: 500px) {
+  .main_container {
+      justify-content: center;
+      margin: 0 auto;  
+      padding-left: 0; 
+      padding-right: 0; 
+      max-width: 300px; 
+  }
+
+  .main_card {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto; 
+  }
+}
