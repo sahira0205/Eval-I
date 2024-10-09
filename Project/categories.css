@@ -351,3 +351,11 @@ a {
       margin: 0 auto; 
   }
 }
+
+/* Product details page */
+.product-detail {
+  display: none;
+}
+.product-detail.active {
+  display: block;
+}
