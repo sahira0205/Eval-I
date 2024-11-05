@@ -1,0 +1,2111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product List and Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* General styling */
+    .product-container {
+      margin-bottom: 20px;
+    }
+  
+    /* Hide all product details by default */
+    .product-detail {
+      display: none;
+    }
+
+    .product-detail.active {
+      display: block;
+    }
+
+    .product-img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .main-section {
+      width: 40%;
+      padding: 0px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .product-details h2 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .product-details p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    .price-detail h4,
+    .price-detail p {
+      color: #555;
+    }
+
+    .size-selection {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+
+    .size-selection h3 {
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .size-selection p {
+      text-decoration: underline;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .main-img {
+      width: 60%;
+    }
+
+    .main-container {
+      padding: 0px 30px;
+    }
+
+    .icons {
+      gap: 20px;
+    }
+
+    .main-btn {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 768px) {
+      .main-section {
+        width: 100%;
+      }
+
+      .row {
+        margin-bottom: 20px;
+      }
+
+      .product_div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .product-img {
+        width: 100%; /* Ensure full width on small devices */
+        height: auto;
+      }
+
+      .main-img .col-6 {
+        flex: 0 0 100%; /* Make each column full width */
+        max-width: 100%; /* Ensure the column takes full width */
+      }
+
+      .main-section {
+        width: 100%; /* Make the product details section full width */
+      }
+
+      .main-img {
+        width: 100%; /* Make the image section full width */
+      }
+
+      .img-2,
+      .img-3,
+      .img-4 {
+        display: none;
+      }
+
+      .img-1 {
+        width: 100%; /* Set the image width to 100% of the parent */
+        height: auto; /* Ensure the height scales with the width to maintain aspect ratio */
+      }
+    }
+
+    .social-icon {
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="products-container">
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+</div>
+  <!-- Product Details (on a "separate" page) with data-target -->
+  <h1 id="details-header" style="display: none;">Product Details</h1>
+  <div class="product-detail" data-target="product1">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1722670958_7142099.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1722670958_4419783.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1722670958_4709736.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1722670958_5445776.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2> Wonder Woman: Logo</h2>
+          <p>Girls Cotton T-Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹999</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Woman girls oversized t-shirt will complement your look in all the right ways. This stylish and comfortable dress for women is crafted from cotton that offers breathability and a casual fit that keeps you at ease.</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-detail" data-target="product2">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1715958736_8680243.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1696575148_8191965.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1696575148_5563770.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src=""
+                   alt="" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Black Panther: Panther Power</h2>
+          <p>Young Boys Cotton Oversized T-Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹3457</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Shop for Boys Cotton Oversized T-Shirts</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-detail" data-target="product3">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1710919270_8751681.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1710919270_2699285.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1710919270_2699285.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1710919270_5885984.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Peppa Pig: Chasing Rainbows</h2>
+          <p>Girls Cotton Tank Tops</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹475</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Shop for Peppa: Chasing Rainbows Girls Cotton Tank Tops </p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product4">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1713852416_5847320.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1713852416_9620754.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1713852416_3376799.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src=""
+                   alt="" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Spider-Man: With Great Powers
+          </h2>
+          <p>Boys Cotton T-Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹1879</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small"> 
+              We decided to give this iconic superhero the tribute that he deserves. So we designed this kickass sweatshirt. </p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product5">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1710521226_3704666.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1710521226_4018513.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1710521226_8965082.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1710521226_8357807.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Harry Potter: Free Dobby</h2>
+          <p>Girls Cotton Puff Sleeve Tops</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹639</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">  Ever since you read the first book or watched the first movie, we're sure you've always wanted to be a wizard, run into a pillar between platforms 9 and 10, catch the Hogwarts Express from Platform 9Â¾, get sorted by the Sorting Hat, and join the magical Hogwarts School of Witchcraft and Wizardry. This t-shirt just gets you one step closer.
+            </p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product6">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1709617124_5452648.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1709617124_6033526.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1709617124_4332137.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src=""
+                   alt="" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Peanuts: Family Tree</h2>
+          <p>Girls Cotton Crop Tops</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹950</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Its time to now laze in style with t-shirts that are specially designed to keep you comfortable all day long!<br>Here is a t-shirt that you should not miss! </p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product7">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1713521562_1020076.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1708754374_8253849.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1708754374_1028374.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src=""
+                   alt="" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Spider-Man: NWH Friendly Neighbourhood</h2>
+          <p>Young Boys T-Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹520</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Shop for Spider-Man: NWH Friendly Neighbourhood Boys T-shirt Online.</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product8">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1723121375_4878671.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1722952170_2258736.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1722952170_1024158.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1722952170_6886970.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Hello Kitty: So Cute</h2>
+          <p>Girls Cotton T-Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹799</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">This top is purrfectly playful! It comes in a soft, breathable fabric that's comfortable for all-day adventures, while looking just as adorable.</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product9">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1718174208_4633858.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1717137385_9889595.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1717137385_2669163.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1717137385_2625626.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Powerpuff Girls: Girl Power Blossom</h2>
+          <p>Girls Cotton Full Sleeve T-Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹1670</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Shop for Powerpuff Girls: Girl Power Blossom Girls T-Shirts </p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product10">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1718262390_7707118.jpg?w=480&dpr=1.3"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1718262390_5532972.jpg?w=480&dpr=1.3"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1718262390_2374322.png?w=480&dpr=1.3"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1718262390_5778128.png?w=480&dpr=1.3"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Marvel: Avengers Initiative</h2>
+          <p>Boys Cotton T-Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹999</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">If you love the man with the Vibranium Shield, get this official Captain America full sleeve t-shirt online</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product11">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1722333457_9501462.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1721730742_6197562.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1721730742_3848337.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1721741440_5843979.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Plaid: Blue, White</h2>
+          <p>Young Boys Shirts
+
+          </p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹896</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small"> Looking for all the explorers, adventurers, and future heroes, cuz this shirt is waiting for your little guy. No matter the mission, stay comfy all day long. </p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product12">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1711789406_9341085.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1700143514_5878627.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1700143514_8247518.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1700143514_1280809.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>TSS Originals: Space Fun</h2>
+          <p>Boys Cotton Joggers
+
+          </p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹788</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Shop for TSS Originals: Space Fun Boys Cotton Joggers </p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product13">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1721196870_6934817.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1721196870_5848826.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1721196870_2336997.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1721196870_8342007.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>The Good Dinosaur: Spot And Arlo</h2>
+          <p>Boys Cotton T-Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹1999</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Shop for The Good Dinosaur: Spot And Arlo Boys Cotton T-Shirt Online</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product14">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1706243574_6361343.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1706243574_9388485.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1706243574_2078206.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1706243574_2213549.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>PAW Patrol: Marshall</h2>
+          <p>Boys Cotton T-Shirts
+
+          </p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹499</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Shop for PAW Patrol: Marshall Boys T-shirts Online.</p>
+         
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product15">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/Powerpuff-Girls--Girl-Power-Blossom-Co-ord-set%20(2)2024_06_12-12-20-06.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/261270-Powerpuff-Girls-Girl-Power-Blossom-Girls-T-Shirts%20(2)2024_06_01-16-10-10.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/261272-Powerpuff-Girls-Power-Blossom-Girls-Joggers_1%20(4)2024_06_01-16-10-10.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/261270-Powerpuff-Girls-Girl-Power-Blossom-Girls-T-Shirts3%20(2)2024_06_01-16-10-10.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Powerpuff Girls: Girl Power Blossom Set</h2>
+          <p>Girls Cotton Co-ord Sets</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹1399</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Powerpuff Girls: Girl Power Blossom Set</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product16">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/223079-PEPPA-&-RAINBOWS%20Coord-set-12024_05_06-13-07-48.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/223079-PEPPA-&-RAINBOWS-Coord-set-22024_05_06-13-07-48.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/223079-PEPPA-&-RAINBOWS-Coord-set-32024_05_06-13-07-48.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/223079-PEPPA-&-RAINBOWS-Coord-set-42024_05_06-13-07-48.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Peppa: Rainbow Splash Set</h2>
+          <p>Girls Cotton Co-ord Sets</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹990</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Peppa: Rainbow Splash Set.</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product17">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1718174248_5226277.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1717137647_1016189.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1717137647_1614576.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1717137647_7712181.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Powerpuff Girls: Girl Power Bubbles</h2>
+          <p>Girls Cotton Full Sleeve T-Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹3979</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Shop for Powerpuff Girls: Girl Power Bubbles Girls T-Shirts </p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product18">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1710914693_1760631.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1709800281_3009018.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1709800281_3395877.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src=""
+                   alt="" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>TSS Originals: Sugar Blossom</h2>
+          <p>Girls Cotton Full Sleeve T-Shirts
+
+          </p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹1299</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Shop for TSS Originals: Sugar Blossom Girls Cotton Full Sleeve T-shirts </p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product19">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1711789452_6012173.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1705489587_1670224.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1705489587_9912153.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src=""
+                   alt="" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Solids: Black and Green</h2>
+          <p>Boys Cotton Joggers
+
+          </p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹999</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Shop for Solids: Black and Green Boys Cotton Joggers Online</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product20">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1709968617_5642593.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1709968617_3788774.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1709968617_6814141.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1709968617_2986322.jpg?format=webp&w=480&dpr=1.3"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Solids: Celestial Blue (Colourblock)</h2>
+          <p>Boys Cotton Shirts
+
+          </p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹799</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Shop for Solids: Celestial Blue (Colourblock) Boys Cotton Shirts </p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function goToProduct(productName) {
+    window.location.href = `product.html?name=${productName}`;
+  }
+
+  function showProductDetails() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productName = urlParams.get('name');
+
+    if (productName) {
+      document.querySelector('.products-container').style.display = 'none';
+
+      document.getElementById('details-header').style.display = 'none';
+      const allProductDetails = document.querySelectorAll('.product-detail');
+      allProductDetails.forEach(detail => {
+        detail.classList.remove('active');
+      });
+
+      const targetDetail = document.querySelector(`.product-detail[data-target="${productName}"]`);
+      if (targetDetail) {
+        targetDetail.classList.add('active');
+      }
+    }
+  }
+  showProductDetails();
+  </script>
+</body>
+</html>

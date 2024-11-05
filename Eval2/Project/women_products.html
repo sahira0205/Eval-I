@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product List and Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* General styling */
+    .product-container {
+      margin-bottom: 20px;
+    }
+  
+    /* Hide all product details by default */
+    .product-detail {
+      display: none;
+    }
+
+    .product-detail.active {
+      display: block;
+    }
+
+    .product-img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .main-section {
+      width: 40%;
+      padding: 0px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .product-details h2 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .product-details p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    .price-detail h4,
+    .price-detail p {
+      color: #555;
+    }
+
+    .size-selection {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+
+    .size-selection h3 {
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .size-selection p {
+      text-decoration: underline;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .main-img {
+      width: 60%;
+    }
+
+    .main-container {
+      padding: 0px 30px;
+    }
+
+    .icons {
+      gap: 20px;
+    }
+
+    .main-btn {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 768px) {
+      .main-section {
+        width: 100%;
+      }
+
+      .row {
+        margin-bottom: 20px;
+      }
+
+      .product_div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .product-img {
+        width: 100%; /* Ensure full width on small devices */
+        height: auto;
+      }
+
+      .main-img .col-6 {
+        flex: 0 0 100%; /* Make each column full width */
+        max-width: 100%; /* Ensure the column takes full width */
+      }
+
+      .main-section {
+        width: 100%; /* Make the product details section full width */
+      }
+
+      .main-img {
+        width: 100%; /* Make the image section full width */
+      }
+
+      .img-2,
+      .img-3,
+      .img-4 {
+        display: none;
+      }
+
+      .img-1 {
+        width: 100%; /* Set the image width to 100% of the parent */
+        height: auto; /* Ensure the height scales with the width to maintain aspect ratio */
+      }
+    }
+
+    .social-icon {
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="products-container">
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+<div class="product-container"></div>
+</div>
+  <!-- Product Details (on a "separate" page) with data-target -->
+  <h1 id="details-header" style="display: none;">Product Details</h1>
+  <div class="product-detail" data-target="product1">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1713781292_1126705.jpg?format=webp&w=1080&dpr=1.5"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1713781292_7594978.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1713781292_7906550.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1713781292_4802617.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Cotton Linen: Lavender</h2>
+          <p>Women Boyfriend Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹5649</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Shop for Solids: Lavender Boyfriend Shirt Womens Online</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-detail" data-target="product2">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1718724725_7185220.jpg?w=480&dpr=1.5"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1717136952_2267902.jpg?w=480&dpr=1.5"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1717137035_7224598.webp?format=webp&w=480&dpr=1.5"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1717137035_6140656.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Parachute Jeans: Ice Blue</h2>
+          <p>Women Jeans</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹3659</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Shades Of Cloud Women Jeans</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-detail" data-target="product3">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1719209672_5787014.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1717415372_8277540.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1717415372_9285730.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1717415372_1209257.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Corduroy Pants: Peachy Pink</h2>
+          <p>Women Pants</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹4750</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Peachy Pink (Corduroy) Women Pants</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product4">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1726038493_4939290.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1726038493_1987081.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1726038493_4654387.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1726038493_2949410.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Cotton Linen: Royal Purple</h2>
+          <p>Women Boyfriend Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹3869</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small"> These shirts are simply perfect for any style, any vibe. </p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product5">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1719902491_4341376.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1718016737_9840194.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1718016737_7921069.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1718016737_6545609.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Denim: Graffiti (Baggy Fit)</h2>
+          <p>Women Jeans</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹7639</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small"> Get ready to rock that effortlessly cool vibe with our women's baggy fit jeans! Designed for comfort and style, these jeans offer a relaxed silhouette that's perfect for casual outings and laid-back days.
+            </p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product6">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1711704060_3673953.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1708952912_9874015.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1708952912_3514339.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1708952912_1416660.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Solids: Hot Pink</h2>
+          <p>Women Boyfriend Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹4950</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Shop for Hot Pink Solid Boyfriend Shirt Online </p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product7">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1714046861_3561134.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1714046861_5447689.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1714046861_9786519.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1714046861_6592603.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Solids: Blue Stripes</h2>
+          <p>Women Boyfriend Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹6209</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Blend in and stand out with this unconventional blue striped boyfriend shirt.</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product8">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1714046295_1152402.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1714046295_6685291.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1714046295_8900341.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1714046295_7949115.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Solids: Peach Stripes</h2>
+          <p>Women Boyfriend Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹6799</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Blend in and stand out with this unconventional peach striped boyfriend shirt.</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product9">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1721458207_1698157.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1721458207_4168400.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1721458207_9649366.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1721458207_4742067.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Pink Panther: XOXO</h2>
+          <p>Women Boyfriend Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹5670</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Think pink. Think Panther. Think smooth in this shirt. This boyfriend shirt is just what your weekend wardrobe needs to add a playful punch, proving that oversized and loose can also be fun and flirty</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product10">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1715602848_7314467.png?format=webp&w=480&dpr=1.5"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1715602848_3044660.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1715602848_4681752.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1715602848_3410866.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Cotton Linen: Lime</h2>
+          <p>Women Boyfriend Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹5648</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Lime Boyfriend Shirt Womens Online</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product11">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1725359916_5235873.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1706022920_1036648.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1706022920_8919255.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1706022920_6247743.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Carrot Fit Pant: Light Blue</h2>
+          <p>Women Pants</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹3896</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small"> Light Blue Women Pants </p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product12">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1720857544_2543718.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1720857544_3456985.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1720857544_4997582.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1720857544_1679267.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Textured Shirt: Spiced Plum (Solids)</h2>
+          <p>Women Boyfriend Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹3967</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Shop for Spiced Plum Womens Boyfriend Shirts </p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product13">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1722511644_3702485.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1722511644_1268625.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1722511644_3457874.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1722511644_6698815.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Ribbed Pants: Charcoal (Solids)</h2>
+          <p>Women Pants</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹5999</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Ditch the ordinary sweats and get your hands on these statement-making wild leg joggers. Crafted with luxuriously soft, breathable fabric, they'll keep you feeling comfy while you conquer your day</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product14">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1712570896_3385545.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1712570896_4306603.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1712570896_9267815.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1712570896_8055140.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Disney: Alice In Wonderland</h2>
+          <p>Women Boxy Fit Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹3799</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small"> Alice In Wonderland Women Boxy Fit Shirt</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product15">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1681814930_6183239.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1681814930_1684035.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1681814930_9313551.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1681814930_7414820.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Solids: Mushroom</h2>
+          <p>Women Flared Joggers</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹4529</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Shop for Solids Mushroom Women's Flared Jogger</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product16">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1715666398_3393417.png?format=webp&w=480&dpr=1.5"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1715666398_9531562.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1715666398_2209675.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1715666398_2273094.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Miss Joaquim</h2>
+          <p>Women Boyfriend Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹5490</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Shop for SingaporeInspired: Miss Joaquim Boyfriend Shirt Online.</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product17">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1719638592_9959926.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1719638592_4489952.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1719638592_8901779.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1720189591_9132165.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Denim: Shades of Marlin</h2>
+          <p>Women Jeans</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹3979</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Get ready to slay in our Baggy Fit Jeans the perfect blend of style and sass! Hugging your curves in all the right places, they offer both comfort and durability, so you can strut your stuff without any worries.</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product18">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1715670455_7376733.png?format=webp&w=480&dpr=1.5"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1715670455_1664910.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1715670455_7501847.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1715670455_3122580.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Solids: Electric Blue</h2>
+          <p>Women Boyfriend Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹3979</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Shop for Solids: Electric Blue Women's Boyfriend Shirt </p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product19">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1711539798_1918283.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1708939032_8273916.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1702676369_9914732.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1702676369_8315372.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Solids: Plum</h2>
+          <p>Cropped Shirts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹2999</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Shop for Solids: Plum Women Cropped Shirt Online</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-detail" data-target="product20">
+    <div class="my-5 main-container">
+      <div class="row">
+        <div class="col-md-6 main-img">
+          <div class="row g-2 product_div">
+            <div class="col-6 img-1">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1723867641_6972783.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 1" class="product-img img-1">
+            </div>
+            <div class="col-6 img-2">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1723867641_7985588.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 2" class="product-img">
+            </div>
+            <div class="col-6 img-3">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1723867641_1091666.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 3" class="product-img">
+            </div>
+            <div class="col-6 img-4">
+              <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1723867641_5495003.jpg?format=webp&w=480&dpr=1.5"
+                   alt="Product 4" class="product-img">
+            </div>
+          </div>
+        </div>
+
+        <div class="main-section product-details col-md-6">
+          <h2>Solids: Sky Blue</h2>
+          <p>Women Denim Shorts</p>
+          <hr style="margin: 6px 0;"> 
+          <h4 class="">₹3799</h4>
+          <p class="price-detail" style="margin-bottom: 5px;">MRP incl. of all taxes</p>
+
+          <div class="size-selection mt-2">
+            <h3>Please select a size.</h3>
+            <p>SIZE CHART</p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XXS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">XS</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">S</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">M</button>
+            <button class="btn btn-outline-secondary rounded-pill px-3 py-1">L</button>
+          </div>
+
+          <div class="quantity-section mt-3 d-flex align-items-center">
+            <label for="quantity" class="mb-0 me-2" style="font-size: 16px; color: #555;">Quantity:</label>
+            <select class="form-select" id="quantity" style="font-size: 14px; width: 50px; padding: 0.2rem;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center main-btn">
+            <button class="btn btn-danger add_cart">ADD TO CART</button>
+            <button class="btn btn-outline-secondary">
+              <i class="far fa-heart me-2"></i> ADD TO WISHLIST
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <h5>Delivery Details</h5>
+            <div class="d-flex align-items-center">
+              <input type="text" class="form-control me-2" placeholder="Enter Pincode" style="font-size: 14px;">
+              <button class="btn btn-outline-secondary">CHECK</button>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex icons">
+            <div>
+              <h5>Share this product:</h5>
+            </div>
+            <div class="d-flex">
+              <a href="#" class="me-2 social-icon"><i class="fab fa-whatsapp fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="me-2 social-icon"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6 class="small">Product Description</h6>
+            <p class="small">Shop for Solids: Sky Blue Women Denim Shorts</p>
+          </div>
+
+          <div class="mt-2">
+            <h6 class="small">Care Instructions</h6>
+            <p class="small">Machine wash cold with like colors, tumble dry low.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function goToProduct(productName) {
+    window.location.href = `product.html?name=${productName}`;
+  }
+
+  function showProductDetails() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productName = urlParams.get('name');
+
+    if (productName) {
+      document.querySelector('.products-container').style.display = 'none';
+
+      document.getElementById('details-header').style.display = 'none';
+      const allProductDetails = document.querySelectorAll('.product-detail');
+      allProductDetails.forEach(detail => {
+        detail.classList.remove('active');
+      });
+
+      const targetDetail = document.querySelector(`.product-detail[data-target="${productName}"]`);
+      if (targetDetail) {
+        targetDetail.classList.add('active');
+      }
+    }
+  }
+  showProductDetails();
+  </script>
+</body>
+</html>
